@@ -4,28 +4,26 @@ var serve = require('koa-static-folder');
 
 router
 	.get('/', function*(next) {
-		//this.body = 'Hello World!';
 		this.status = 307;
 		this.redirect('/app/index.html')
 	})
-	.get('/stuff', function*(next) {
+	.get('/tasks', function*(next) {
 		this.body = 'Hello Stuff!';
 	})
-	.post('/users', function*(next) {
+	.post('/tasks', function*(next) {
 		// ...
 	})
-	.put('/users/:id', function*(next) {
+	.put('/tasks/:id', function*(next) {
 		// ...
 	})
-	.del('/users/:id', function*(next) {
+	.del('/tasks/:id', function*(next) {
 		// ...
 	});
 
 
 
-app.use(serve('./public'))
+app
 	.use(serve('./app'))
-	.use(serve('./bower_components'))
 	.use(router.routes())
 	.use(router.allowedMethods())
 	.listen(3000);
