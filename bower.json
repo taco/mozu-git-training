@@ -1,0 +1,20 @@
+{
+  "name": "mozu-git-training",
+  "version": "0.0.1",
+  "authors": [
+    "Taco <travis_johnson@volusion.com>"
+  ],
+  "description": "An example repository to illustrate the usage of Git",
+  "main": "app.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.0"
+  }
+}

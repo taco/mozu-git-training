@@ -2,7 +2,7 @@
   "name": "mozu-git-training",
   "version": "0.0.1",
   "description": "An example repository to illustrate the usage of Git",
-  "author": "Travis Johnson <travis_johnson@volusion.com>",
+  "author": "Taco <travis_johnson@volusion.com>",
   "contributors": [
     {
       "name": "Travis Johnson",
@@ -17,8 +17,10 @@
     "url": "https://github.com/taco/mozu-git-training"
   },
   "dependencies": {
+    "bower": "^1.4.1",
     "koa": "^0.20.0",
-    "koa-router": "^4.3.2"
+    "koa-router": "^4.3.2",
+    "koa-static": "^1.4.9"
   },
   "license": "MIT"
 }
