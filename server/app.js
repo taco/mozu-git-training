@@ -23,6 +23,7 @@ router
 
 
 app
+	.use(rewrite('/', '/index.html'))
 	.use(rewrite('/*.(html|js|css)', '/app/$1.$2'))
 	.use(serve('./app'))
 
