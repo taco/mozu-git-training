@@ -1,14 +1,12 @@
 var app = require('koa')();
 var router = require('koa-router')();
-var serve = require('koa-static');
-
-// app.use(function*() {
-// 	this.body = "Hello World !!!";
-// });
+var serve = require('koa-static-folder');
 
 router
 	.get('/', function*(next) {
-		this.body = 'Hello World!';
+		//this.body = 'Hello World!';
+		this.status = 307;
+		this.redirect('/app/index.html')
 	})
 	.get('/stuff', function*(next) {
 		this.body = 'Hello Stuff!';
@@ -23,9 +21,11 @@ router
 		// ...
 	});
 
-app
-	.use(serve('bower_components'))
-	.use(serve('app'))
+
+
+app.use(serve('./public'))
+	.use(serve('./app'))
+	.use(serve('./bower_components'))
 	.use(router.routes())
 	.use(router.allowedMethods())
 	.listen(3000);
