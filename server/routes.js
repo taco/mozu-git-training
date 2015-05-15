@@ -1,17 +1,10 @@
 var Router = require('koa-router');
-var uuid = require('node-uuid');
+
+var tasks = require('./tasks')
 
 module.exports = function(app) {
 
-	var tasks = [{
-		id: uuid.v1(),
-		name: 'Task 1',
-		completed: false
-	}, {
-		id: uuid.v1(),
-		name: 'Task 2',
-		completed: false
-	}];
+	tasks.loadDefaultTasks();
 
 	var router = new Router({
 		prefix: '/api'
@@ -21,49 +14,34 @@ module.exports = function(app) {
 		.get('/tasks', function*(next) {
 			this.body = {
 				sucess: true,
-				items: tasks
+				items: tasks.list()
 			};
 		})
 		.post('/tasks', function*(next) {
 			if (this.request.accepts('json') !== 'json')
 				this.throw(406, 'json only');
 
-			var task = this.request.body;
-
-			task.id = uuid.v1();
-			task.completed = false;
-
-			tasks.push(task);
+			tasks.add(this.request.body)
 
 			this.body = {
 				success: true,
-				items: tasks
+				items: tasks.list()
 			}
 		})
 		.put('/tasks/:id', function*(next) {
-			var index = tasks.findIndex(function(task) {
-					return task.id === this.params.id;
-				}, this),
-				task = this.request.body;
-
-			if (index > -1) {
-				tasks[index].completed = task.completed;
-				tasks[index].name = task.name;
-			}
+			tasks.update(this.params.id, this.request.body);
 
 			this.body = {
 				success: true,
-				items: tasks
+				items: tasks.list()
 			}
 		})
 		.del('/tasks/:id', function*(next) {
-			tasks = tasks.filter(function(task) {
-				return task.id !== this.params.id;
-			}, this);
+			tasks.remove(this.params.id);
 
 			this.body = {
 				success: true,
-				items: tasks
+				items: tasks.list()
 			}
 		});
 
