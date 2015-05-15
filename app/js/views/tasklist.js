@@ -4,23 +4,16 @@ define([
   'backbone',
   'collections/tasks',
   'text!/templates/tasklist.html'
-], function($, _, Backbone, TaskColleciton, taskListTemplate){
+], function($, _, Backbone, TaskCollection, taskListTemplate){
   return Backbone.View.extend({
     el: $('#container'),
     initialize: function() {
-      var _this = this;
-      this.collection = new TaskColleciton();
-      this.collection.fetch().done(function(data) { 
-        console.log('travis is a backbone');
-        _this.collection.set(data.items); 
-        _this.render();
-      });
-
+      this.collection = new TaskCollection();
+      this.collection.fetch().then(this.render.bind(this));
     },
-    render: function() {
-      var data = { tasks: this.collection.models };
-      var html = _.template(taskListTemplate)(data);
-      this.$el.html(html);
+    render: function(data) {
+      this.collection.set(data.items);
+      this.$el.html(_.template(taskListTemplate)({tasks: this.collection.models}));
     }
   });
 });
