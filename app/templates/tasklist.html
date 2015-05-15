@@ -1,5 +1,8 @@
 <ul>
   <% _.each(tasks, function(task){ %>
-   <li><%= task.get("name") %></li> 
+   <li data-id="<%= task.get("id") %>">
+     <input type="checkbox" <% if (task.get("completed")) { %> checked="checked" <% } %>>
+     <input type="text" value="<%= task.get("name") %>" />
+   </li> 
   <% }); %>
 </ul>

@@ -7,7 +7,8 @@ module.exports = {
 			name: 'Task 1'
 		});
 		this.add({
-			name: 'Task 2'
+			name: 'Task 2',
+			completed: true
 		});
 	},
 
@@ -17,7 +18,7 @@ module.exports = {
 
 	add: function(task) {
 		task.id = uuid.v1();
-		task.completed = false;
+		task.completed = task.completed || false;
 
 		tasks.push(task);
 	},
