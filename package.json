@@ -10,7 +10,7 @@
     }
   ],
   "scripts": {
-    "start": "DEBUG=koa* node --harmony app.js"
+    "start": "npm install && bower install && DEBUG=koa* node --harmony app.js"
   },
   "repository": {
     "type": "git",
