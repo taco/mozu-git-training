@@ -19,9 +19,11 @@
   "dependencies": {
     "bower": "^1.4.1",
     "koa": "^0.20.0",
+    "koa-body-parser": "^1.1.2",
     "koa-rewrite": "^1.1.0",
     "koa-router": "^4.3.2",
-    "koa-static-folder": "^0.1.5"
+    "koa-static-folder": "^0.1.5",
+    "node-uuid": "^1.4.3"
   },
   "license": "MIT"
 }
