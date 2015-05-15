@@ -10,7 +10,12 @@ define([
     initialize: function() {
       var _this = this;
       this.collection = new TaskColleciton();
-      this.collection.fetch().done(function() { _this.render(); });
+      this.collection.fetch().done(function(data) { 
+        console.log('travis is a backbone');
+        _this.collection.set(data.items); 
+        _this.render();
+      });
+
     },
     render: function() {
       var data = { tasks: this.collection.models };

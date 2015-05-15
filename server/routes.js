@@ -1,6 +1,6 @@
 var Router = require('koa-router');
 
-var tasks = require('./tasks')
+var tasks = require('./tasks');
 
 module.exports = function(app) {
 
@@ -26,7 +26,7 @@ module.exports = function(app) {
 			this.body = {
 				success: true,
 				items: tasks.list()
-			}
+			};
 		})
 		.put('/tasks/:id', function*(next) {
 			tasks.update(this.params.id, this.request.body);
@@ -34,7 +34,7 @@ module.exports = function(app) {
 			this.body = {
 				success: true,
 				items: tasks.list()
-			}
+			};
 		})
 		.del('/tasks/:id', function*(next) {
 			tasks.remove(this.params.id);
@@ -42,10 +42,10 @@ module.exports = function(app) {
 			this.body = {
 				success: true,
 				items: tasks.list()
-			}
+			};
 		});
 
 	app
 		.use(router.routes())
 		.use(router.allowedMethods())
-}
+};
