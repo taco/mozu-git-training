@@ -6,9 +6,6 @@ define([
   'collections/tasks',
   'text!/templates/tasklist.html'
 ], function($, _, Backbone, Task, TaskCollection, taskListTemplate){
-  var defaultFocus = 'input[data-action=new-task]',
-    lastFocus = '';
-
   return Backbone.View.extend({
     el: $('#container'),
     initialize: function() {
@@ -18,7 +15,7 @@ define([
     render: function(data) {
       this.collection.set(data.items);
       this.$el.html(_.template(taskListTemplate)({tasks: this.collection.models}));
-      $(lastFocus || defaultFocus).focus();
+      $('input[data-action=new-task]').focus();
     },
     events: {
       "keydown input[data-action=new-task]" : "createTask",
@@ -38,7 +35,6 @@ define([
         name: $(event.target).val()
       }, {
         success: function(model, response, options) {
-          lastFocus = '';
           _this.initialize();
         }
       })
@@ -58,11 +54,6 @@ define([
 
       task.save({
         name: $target.val()
-      }, {
-        success: function() {
-          _this._setLastFocus();
-          _this.initialize();
-        }
       });
     },
     updateTaskCompleted: function(event) {
@@ -72,21 +63,7 @@ define([
       
       task.save({
         completed: $target.is(':checked')
-      }, {
-        success: function() {
-          _this._setLastFocus();
-          _this.initialize();
-        }
       });
-    },
-    _setLastFocus: function() {
-      var $activeEl = $(document.activeElement),
-              action = $activeEl.data('action'),
-              id = $activeEl.data('id');
-
-      lastFocus = action && id
-        ? 'input[data-action=' + action + '][data-id=' + id + ']'
-        : '';
     }
   });
 });
