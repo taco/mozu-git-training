@@ -1,8 +1,11 @@
-<ul>
+<ul class="task-list">
+  <li>
+  	<input data-action="new-task" data-id="new" type="text" placeholder="New task..." />
+  </li>
   <% _.each(tasks, function(task){ %>
-   <li data-id="<%= task.get("id") %>">
-     <input type="checkbox" <% if (task.get("completed")) { %> checked="checked" <% } %>>
-     <input type="text" value="<%= task.get("name") %>" />
+   <li <% if (task.get("completed")) { %> data-state="completed" <% } %>>
+     <input type="checkbox" data-action="task-completed" <% if (task.get("completed")) { %> checked="checked" <% } %> data-id="<%= task.get("id") %>">
+     <input type="text" data-action="task-name" data-id="<%= task.get("id") %>" value="<%= task.get("name") %>" />
    </li> 
   <% }); %>
 </ul>

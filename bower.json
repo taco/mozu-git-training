@@ -12,7 +12,13 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    ".bower.json",
+    "bower.json",
+    "*LICENSE*",
+    "src",
+    "*.md",
+    "package.json"
   ],
   "dependencies": {
     "backbone": "~1.2.0",

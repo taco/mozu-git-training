@@ -13,7 +13,7 @@ module.exports = {
 	},
 
 	list: function() {
-		return tasks;
+		return tasks.slice(0).reverse();
 	},
 
 	add: function(task) {
