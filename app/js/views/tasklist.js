@@ -22,7 +22,7 @@ define([
       "keydown input[data-action=task-name]" : "udpateTaskName",
       "blur input[data-action=task-name]" : "udpateTaskName",
       "change input[data-action=task-completed]": "updateTaskCompleted",
-      "click ul": "focusDump"
+      "click a[data-action=task-remove]": "removeTask"
     },
     createTask: function(event) {
       // Test for enter key
@@ -48,7 +48,7 @@ define([
       
       $target = $(event.target);
       
-      task = this.collection.get($target.data('id'));
+      task = this.collection.get($target.parent('li').data('id'));
 
       if ($target.val() === task.get('name')) return;
 
@@ -58,11 +58,23 @@ define([
     },
     updateTaskCompleted: function(event) {
       var $target = $(event.target),
-        task = this.collection.get($target.data('id')),
+        task = this.collection.get($target.parent('li').data('id')),
         _this = this;
       
       task.save({
         completed: $target.is(':checked')
+      });
+    },
+    removeTask: function(event) {
+      var $target = $(event.target),
+        task = this.collection.get($target.parent('li').data('id'));
+
+      event.preventDefault();
+
+      task.destroy({
+        success: function() {
+          $target.parent('li').remove();    
+        }
       });
     }
   });

@@ -3,9 +3,10 @@
   	<input data-action="new-task" data-id="new" type="text" placeholder="New task..." />
   </li>
   <% _.each(tasks, function(task){ %>
-   <li <% if (task.get("completed")) { %> data-state="completed" <% } %>>
-     <input type="checkbox" data-action="task-completed" <% if (task.get("completed")) { %> checked="checked" <% } %> data-id="<%= task.get("id") %>">
-     <input type="text" data-action="task-name" data-id="<%= task.get("id") %>" value="<%= task.get("name") %>" />
+   <li <% if (task.get("completed")) { %> data-state="completed" <% } %> data-id="<%= task.get("id") %>">
+     <input type="checkbox" data-action="task-completed" <% if (task.get("completed")) { %> checked="checked" <% } %>>
+     <input type="text" data-action="task-name" value="<%= task.get("name") %>" />
+     <a href="#" data-action="task-remove">Remove</a>
    </li> 
   <% }); %>
 </ul>
