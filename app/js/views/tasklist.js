@@ -63,6 +63,16 @@ define([
       
       task.save({
         completed: $target.is(':checked')
+      }, {
+        success: function() {
+          var $text = $target.next('input');
+
+          if (task.get('completed')) {
+            $text.attr('readonly', 'readonly');
+          } else {
+            $text.removeAttr('readonly');
+          }
+        }
       });
     },
     removeTask: function(event) {
