@@ -1,6 +1,12 @@
 var uuid = require('node-uuid');
 var tasks = [];
 
+function findIndex(task) {
+	return tasks.findIndex(function(t) {
+		return t.id === (task.id || task);
+	});
+}
+
 module.exports = {
 	loadDefaultTasks: function() {
 		this.add({
@@ -24,9 +30,7 @@ module.exports = {
 	},
 
 	update: function(id, task) {
-		var index = tasks.findIndex(function(task) {
-				return task.id === id;
-			}, this);
+		var index = findIndex(id);
 
 		if (index > -1) {
 			tasks[index].completed = task.completed;
@@ -35,8 +39,8 @@ module.exports = {
 	},
 
 	remove: function(id) {
-		tasks = tasks.filter(function(task) {
-			return task.id !== id;
-		}, this);
+		var index = findIndex(id);
+
+		tasks.splice(index, 1);
 	}
 }
