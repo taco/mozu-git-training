@@ -37,7 +37,7 @@ define([
         success: function(model, response, options) {
           _this.initialize();
         }
-      })
+      });
     },
     udpateTaskName: function(event) {
       var $target,

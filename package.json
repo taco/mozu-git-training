@@ -17,7 +17,9 @@
     "url": "https://github.com/taco/mozu-git-training"
   },
   "devDependencies": {
-    "bower": "^1.4.1"
+    "bower": "^1.4.1",
+    "gulp": "^3.8.11",
+    "gulp-jshint": "^1.10.0"
   },
   "dependencies": {
     "koa": "^0.20.0",
