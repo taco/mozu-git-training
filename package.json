@@ -19,7 +19,8 @@
   "devDependencies": {
     "bower": "^1.4.1",
     "gulp": "^3.8.11",
-    "gulp-jshint": "^1.10.0"
+    "gulp-jshint": "^1.10.0",
+    "gulp-stylus": "^2.0.2"
   },
   "dependencies": {
     "koa": "^0.20.0",

@@ -33,10 +33,11 @@
 
 
 ### ToDos
- - How to howfix
+ - How to hotfix
  - How to create a branch from tag
  - How to reset and fix issues
  - How to show what a commit did (CLI and TFS)
+ - Explain Fast-forwarding
 
 
 
