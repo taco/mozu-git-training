@@ -11,6 +11,7 @@
 Stable, next minor release in line for production
 
 ## Basic Terms
+ - [Staging][staging]
  - [Branching][branching]
  - [Rebasing][rebasing]
 
@@ -35,6 +36,33 @@ Stable, next minor release in line for production
 
  - [ConEmu for Windows][conemu] - Better shell manager
  - [SourceTree for Windows and Mac][sourcetree] - The UI most are using
+
+
+## Recommended Globals
+
+    git config --global alias.lgp "log --color --graph --pretty=format:'%C(bold)%h%C(reset) -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold)<%an>%Creset' --abbrev-commit"
+    git config --global push.default simple
+    git config --global pull.default simple
+    git config --global core.autocrlf true
+
+## VisualStudio as merge tool
+
+    [diff]
+        tool = vsdiffmerge
+    [difftool]
+          prompt = false
+    [difftool "vsdiffmerge"]
+          cmd = '"C:\\Program Files (x86)\\Microsoft Visual Studio 12.0\\Common7\\IDE\\vsdiffmerge.exe"' "$LOCAL" "$REMOTE" //t
+          keepbackup = false
+          trustexitcode = true
+    [merge]
+          tool = vsdiffmerge
+    [mergetool]
+          prompt = false
+    [mergetool "vsdiffmerge"]
+          cmd = '"C:\\Program Files (x86)\\Microsoft Visual Studio 12.0\\Common7\\IDE\\vsdiffmerge.exe"' "$REMOTE" "$LOCAL" "$BASE" "$MERGED" //m
+          keepbackup = false
+          trustexitcode = true
 
 
 ## Basic Scenario (local only)
@@ -76,7 +104,7 @@ shouldnt merge! should rebase!
 
 
 
-
+ [staging]: https://git-scm.com/book/en/v2/Getting-Started-Git-Basics#The-Three-States
  [branching]: https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
  [rebasing]: https://git-scm.com/book/en/v2/Git-Branching-Rebasing
  [credential-store]: https://gitcredentialstore.codeplex.com
